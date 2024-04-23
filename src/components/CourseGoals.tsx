@@ -6,7 +6,11 @@ import { PropsWithChildren } from 'react';
 //     children: ReactNode
 // }
 
-type CourseGoalProps = PropsWithChildren<{ title: string }>
+type CourseGoalProps = PropsWithChildren<{
+    goalId: number
+    title: string
+    onDeleteGoal: (id: number) => void
+}>
 
 // const CourseGoal: FC<CourseGoalProps> = ({ title, children }) => {
 //         return (
@@ -22,13 +26,13 @@ type CourseGoalProps = PropsWithChildren<{ title: string }>
 
 // export default CourseGoal;
 
-export default function CourseGoal({ title, children }: CourseGoalProps) {
+export default function CourseGoal({ children, goalId, title, onDeleteGoal }: CourseGoalProps) {
     return <article>
         <div>
             <h2>{title}</h2>
             {children}
         </div>
-        <button>DELETE</button>
+        <button onClick={() => onDeleteGoal(goalId)}>DELETE</button>
     </article>
 }
 
